@@ -11,11 +11,7 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      fullname: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      username: {
+      name: {
         allowNull: false,
         type: DataTypes.STRING,
       },
@@ -26,6 +22,7 @@ module.exports = {
       email: {
         allowNull: false,
         type: DataTypes.STRING,
+        unique: true,
       },
       createdAt: {
         allowNull: false,
