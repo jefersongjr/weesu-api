@@ -1,0 +1,51 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Diretórios de dependências
+node_modules/
+
+# Compilação de saída
+dist/
+build/
+
+# Diretorias de pacotes
+.pnp/
+.pnp.js
+
+# Tipos de cache
+.cache/
+.next/
+out/
+
+# Arquivos de teste
+coverage/
+
+# Configurações de ambiente
+.env
+.env.test
+.env.production
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Sistema operacional ou editores específicos
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Cache do TypeScript
+*.tsbuildinfo
+
+# Pasta temporária do Docker
+docker-compose.override.yml
