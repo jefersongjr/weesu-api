@@ -7,7 +7,7 @@
 //         primaryKey: true,
 //         type: DataTypes.INTEGER,
 //       },
-//       fullname: {
+//       name: {
 //         allowNull: false,
 //         type: DataTypes.STRING,
 //       },

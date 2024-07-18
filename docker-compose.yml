@@ -11,6 +11,12 @@ services:
       - ./backend:/app
     depends_on:
       - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USERNAME=root
+      - DB_PASSWORD=password
+      - DB_DATABASE=weesu_db
 
   frontend:
     build: 
@@ -30,7 +36,7 @@ services:
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: db
+      POSTGRES_DB: weesu_db
     volumes:
       - pgdata:/var/lib/postgresql/data
 
