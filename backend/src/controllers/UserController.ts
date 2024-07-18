@@ -26,16 +26,4 @@ export class UserController {
       next(error);
     }
   };
-  public getAllUsers = async (
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ) => {
-    try {
-      const users = await this.userService.getAllUsers(); // Método a ser implementado no UserService
-      return res.status(200).json(users);
-    } catch (error) {
-      next(error);
-    }
-  };
 }
