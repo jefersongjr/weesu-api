@@ -50,7 +50,7 @@ com o container funcionando
 
 Vá até o diretório `/backend/src/database/migrations` e remova os comentários das migrações que deseja aplicar. Por exemplo
 
-```
+```javascript
 module.exports = {
   up: async (QueryInterface, DataTypes) => {
     await QueryInterface.createTable('users', {
@@ -91,7 +91,8 @@ module.exports = {
 ```
 
 Vá até o diretório `/backend/src/database/seeders` e remova os comentários dos seeders que deseja aplicar. Por exemplo:
-```
+
+```javascript
 'use strict';
 module.exports = {
   up: async (QueryInterface) => {
