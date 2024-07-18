@@ -1,11 +1,17 @@
 import { Model, INTEGER, STRING } from 'sequelize';
 import db from '.';
+import bcrypt from 'bcryptjs';
 
 class User extends Model {
-  declare id: number;
-  declare name: string;
-  declare email: string;
-  declare password: string;
+  public id!: number;
+  public name!: string;
+  public email!: string;
+  public password!: string;
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
+  public async comparePassword(candidatePassword: string): Promise<boolean> {
+    return bcrypt.compare(candidatePassword, this.password);
+  }
 }
 
 User.init(
@@ -32,9 +38,25 @@ User.init(
   },
   {
     sequelize: db,
-    underscored: true,
+    underscored: false,
     modelName: 'users',
-    timestamps: false,
+    timestamps: true,
+    hooks: {
+      // Hook para criptografar a senha antes de criar um novo usuário
+      beforeCreate: async (user: User) => {
+        if (user.password) {
+          const salt = await bcrypt.genSalt(10);
+          user.password = await bcrypt.hash(user.password, salt);
+        }
+      },
+      // Hook para criptografar a senha antes de atualizar um usuário existente
+      beforeUpdate: async (user: User) => {
+        if (user.password) {
+          const salt = await bcrypt.genSalt(10);
+          user.password = await bcrypt.hash(user.password, salt);
+        }
+      },
+    },
   },
 );
 export default User;

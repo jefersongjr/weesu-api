@@ -7,5 +7,6 @@ const userController = new UserController();
 
 userRouter.post('/login', userController.getLogin);
 userRouter.get('/login/validate', authMiddleware, userController.validateLogin);
+userRouter.post('/user', userController.createUser);
 
 export { userRouter };

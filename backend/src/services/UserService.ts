@@ -2,21 +2,41 @@ import User from '../database/models/UserModel';
 import { tokenGenerate } from '../utils/tokenGenerate';
 import ThrowException from '../middlewares/exceptions/ThrowException';
 import { Jwt } from 'jsonwebtoken';
-// import * as bcrypt from 'bcrypt';
 
 export class UserService {
+  public createNewUser = async (
+    name: string,
+    email: string,
+    password: string,
+  ) => {
+    if (!name || !email || !password) {
+      throw new ThrowException(401, 'Todos os campos devem ser preenchidos');
+    }
+
+    const users = await User.findAll();
+    const validate1 = users.some((user) => user.email === email);
+    if (validate1) {
+      throw new ThrowException(409, 'Usuário já existe');
+    }
+
+    const newUser = await User.create({
+      name,
+      email,
+      password,
+    });
+
+    return newUser;
+  };
+
   public getLogin = async (email: string, password: string) => {
     if (!email || !password)
       throw new ThrowException(400, 'Todos os campos devem ser preenchidos');
-
     const user = await User.findOne({ where: { email } });
 
     if (!user) throw new ThrowException(401, 'Senha ou email incorretos');
 
-    // const validatePass = bcrypt.compareSync(password, user?.password);
-    // console.log(validatePass);
-
-    if (password !== user.password)
+    const isPasswordValid = await user.comparePassword(password);
+    if (!isPasswordValid)
       throw new ThrowException(401, 'Senha ou email incorretos');
 
     const { name } = user;

@@ -10,6 +10,24 @@ export class UserController {
     this.userService = new UserService();
   }
 
+  public createUser = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) => {
+    try {
+      const { name, email, password } = req.body;
+      if (!name || !email || !password) {
+        throw new ThrowException(400, 'Todos os campos devem ser preenchidos');
+      }
+
+      const user = await this.userService.createNewUser(name, email, password);
+      return res.status(201).json(user);
+    } catch (error) {
+      next(error);
+    }
+  };
+
   public getLogin = async (req: Request, res: Response, next: NextFunction) => {
     try {
       if (!req.body?.email || !req.body?.password) {
