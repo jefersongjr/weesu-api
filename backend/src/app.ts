@@ -1,10 +1,12 @@
 import express from 'express';
+import { userRouter } from './routes/UserRoutes';
 
 class App {
   public app: express.Express;
 
   constructor() {
     this.app = express();
+    this.app.use(userRouter);
 
     this.config();
     this.routes();
