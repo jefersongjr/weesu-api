@@ -1,5 +1,5 @@
 import * as jwt from 'jsonwebtoken';
-// import ThrowException from '../middlewares/exceptions/ThrowException';
+import ThrowException from '../middlewares/exceptions/ThrowException';
 
 export class tokenGenerate {
   static makeToken = (username: string, role: string, email: string) => {
