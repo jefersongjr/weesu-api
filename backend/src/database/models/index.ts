@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { Sequelize } = require('sequelize');
 const config = require('../config/config');
 
