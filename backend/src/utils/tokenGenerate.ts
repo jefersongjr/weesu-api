@@ -2,12 +2,12 @@ import * as jwt from 'jsonwebtoken';
 import ThrowException from '../middlewares/exceptions/ThrowException';
 
 export class tokenGenerate {
-  static makeToken = (username: string, role: string, email: string) => {
+  static makeToken = (name: string, email: string) => {
     const jwtConfig: jwt.SignOptions = {
       expiresIn: '7d',
       algorithm: 'HS256',
     };
-    const token = jwt.sign({ username, role, email }, 'jwt_secret', jwtConfig);
+    const token = jwt.sign({ name, email }, 'jwt_secret', jwtConfig);
     return token;
   };
 

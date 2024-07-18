@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { Sequelize } = require('sequelize');
-const config = require('../config/config');
+import { Sequelize } from 'sequelize';
+const config = require('../config/config'); // Assumindo que o arquivo config.ts está configurado como você mostrou
 
-export default new Sequelize(config);
+const sequelize = new Sequelize(config);
+
+export default sequelize;
