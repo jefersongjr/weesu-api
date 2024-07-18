@@ -1,42 +1,27 @@
-'use strict';
+// 'use strict';
+// module.exports = {
+//   up: async (QueryInterface) => {
+//     await QueryInterface.bulkInsert('users', [
+//       {
+//         fullname: 'James Happer',
+//         password: '$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.PW',
+//         // senha: secret_admin
+//         email: 'jim_happer@ds.com',
+//         createdAt: new Date(),
+//         updatedAt: new Date(),
+//       },
+//       {
+//         fullname: 'Dwight Schrute',
+//         password: '$2a$08$Y8Abi8jXvsXyqm.rmp0B.uQBA5qUz7T6Ghlg/CvVr/gLxYj5UAZVO',
+//         // senha: secret_user
+//         email: 'ds_manager@dm.com',
+//         createdAt: new Date(),
+//         updatedAt: new Date(),
+//       },
+//     ]);
+//   },
 
-import { QueryInterface } from 'sequelize';
-import bcrypt from 'bcrypt';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-module.exports = {
-  up: async (queryInterface: QueryInterface) => {
-    const saltRounds = 10;
-    const hashedPassword1 = await bcrypt.hash(
-      process.env.USERPASSWORD1 as string,
-      saltRounds,
-    );
-    const hashedPassword2 = await bcrypt.hash(
-      process.env.USERPASSWORD2 as string,
-      saltRounds,
-    );
-
-    await queryInterface.bulkInsert('users', [
-      {
-        fullname: 'James Happer',
-        password: hashedPassword1,
-        email: 'jim_happer@ds.com',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        fullname: 'Dwight Schrute',
-        password: hashedPassword2,
-        email: 'ds_manager@dm.com',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-    ]);
-  },
-
-  down: async (queryInterface: QueryInterface) => {
-    await queryInterface.bulkDelete('users', {}, {});
-  },
-};
+//   down: async (QueryInterface) => {
+//     await QueryInterface.bulkDelete('users', {}, {});
+//   },
+// };
