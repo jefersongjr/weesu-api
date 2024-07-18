@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { UserService } from '../services/UserService';
 import ThrowException from '../middlewares/exceptions/ThrowException';
+import { JwtPayload } from 'jsonwebtoken';
 
 export class UserController {
   private userService: UserService;
@@ -23,6 +24,21 @@ export class UserController {
       return res.status(200).json({ token: token });
     } catch (error) {
       console.error('Erro no controlador de login:', error);
+      next(error);
+    }
+  };
+
+  public validateLogin = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) => {
+    try {
+      const token = req.headers.authorization;
+      const validateToken = await this.userService.getLoginValidate(token);
+      const { email } = validateToken as JwtPayload;
+      return res.status(200).json({ email: email });
+    } catch (error) {
       next(error);
     }
   };
