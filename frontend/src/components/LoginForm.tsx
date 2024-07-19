@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, TextField, Button, Typography, styled } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { requestLogin } from '../api/requests';
 
 const FormsContainer = styled(Box)({
   height: '45%',
@@ -15,6 +17,28 @@ const FormsContainer = styled(Box)({
 });
 
 const LoginForms: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    try {
+      const response = await requestLogin('/login', { email, password });
+
+      console.log('response', response);
+
+      if (response && response.data && response.data.token) {
+        localStorage.setItem('token', response.data.token);
+        navigate('/home');
+      } else {
+        throw new Error('Token not received');
+      }
+    } catch (error) {
+      console.error('Login failed', error);
+      alert('Invalid email or password');
+    }
+  };
+
   return (
     <FormsContainer>
       <Typography
@@ -27,6 +51,8 @@ const LoginForms: React.FC = () => {
       <TextField
         label="Email"
         variant="outlined"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
         margin="normal"
         sx={{
           backgroundColor: '#FFF',
@@ -43,6 +69,8 @@ const LoginForms: React.FC = () => {
         label="Senha"
         type="password"
         variant="outlined"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
         margin="normal"
         sx={{
           backgroundColor: '#FFF',
@@ -58,6 +86,7 @@ const LoginForms: React.FC = () => {
       <Button
         variant="contained"
         fullWidth
+        onClick={handleLogin}
         sx={{
           marginTop: '1rem',
           backgroundColor: '#03242f',
