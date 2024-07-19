@@ -131,3 +131,61 @@ inicie o banco de dados:
 npm run db:init
 ```
 Após a criação do banco de dados e a aplicação dos seeders, você pode apagar ou comentar os arquivos de migração e seeders no diretório do projeto, conforme necessário.
+
+## Rotas 
+
+* Rota `/login`: 🧑‍⚕️
+
+``` JSON
+{
+  "email": "jim_happer@ds.com",
+  "password": "senha"
+}
+
+ou
+
+{
+  "email": "ds_manager@dm.com",
+  "password": "senha2"
+}
+```
+### A resposta da requisição ira gerar um token necessário para a rota `validate` 
+### ex: 
+
+``` JSON
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmFtZXMgSGFwcGVyIiwiZW1haWwiOiJqaW1faGFwcGVyQGRzLmNvbSIsImlhdCI6MTcyMTM0NjU5NywiZXhwIjoxNzIxOTUxMzk3fQ.o6V0AIpD8O4Ffo8HijtudXfVKVMhxSHwHyXHvC8U5r4"
+}
+
+```
+
+* Rota `validate`
+## PRECISA DO TOKEN EM `HEADERS.AUTHORIZATION` E A RESPOSTA SERÁ:
+
+``` JSON
+{}
+```
+
+* Rota `sign-up`
+## PRECISA DO TOKEN EM `HEADERS.AUTHORIZATION` E A RESPOSTA SERÁ:
+
+``` JSON
+{
+ "name": "Dwight Schrute",
+ "password": "senha2",
+ "email": "ds_manager@dm.com"
+}
+```
+
+## A respota:
+
+``` JSON
+{
+  "id": 16,
+  "name": "Dwight Schrute",
+  "email": "ds_manager@dm.com",
+  "password": "$2a$10$ZRY63BU4Nw2Q1GCTh8onzedMjv.35HZAPhC3gv1EzpKMLuWAiqO/K",
+  "updatedAt": "2024-07-19T00:14:03.433Z",
+  "createdAt": "2024-07-19T00:14:03.433Z"
+}
+```
