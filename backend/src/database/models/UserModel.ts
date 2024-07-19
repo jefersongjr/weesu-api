@@ -42,14 +42,12 @@ User.init(
     modelName: 'users',
     timestamps: true,
     hooks: {
-      // Hook para criptografar a senha antes de criar um novo usuário
       beforeCreate: async (user: User) => {
         if (user.password) {
           const salt = await bcrypt.genSalt(10);
           user.password = await bcrypt.hash(user.password, salt);
         }
       },
-      // Hook para criptografar a senha antes de atualizar um usuário existente
       beforeUpdate: async (user: User) => {
         if (user.password) {
           const salt = await bcrypt.genSalt(10);
