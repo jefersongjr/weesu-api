@@ -21,4 +21,26 @@ export const requestLogin = async (
   }
 };
 
+export const setToken = (token: string): void => {
+  api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+};
+export const validateToken = async (token: string): Promise<boolean> => {
+  try {
+    const response = await api.get('/login/validate', {
+      headers: {
+        Authorization: token,
+      },
+    });
+
+    if (response.status === 200) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.error('Token validation failed');
+    return false;
+  }
+};
+
 export default api;
