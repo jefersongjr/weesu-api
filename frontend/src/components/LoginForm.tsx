@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, TextField, Button, Typography, styled } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { requestLogin, setToken, validateToken } from '../api/requests';
 
 const FormsContainer = styled(Box)({
   height: '45%',
@@ -15,6 +17,27 @@ const FormsContainer = styled(Box)({
 });
 
 const LoginForms: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    try {
+      const response = await requestLogin('/login', { email, password });
+      setToken(response?.data?.token);
+      if (response && response.data && response.data.token) {
+        localStorage.setItem('token', response.data.token);
+        const tokenIsValid = await validateToken(response.data.token);
+        if (tokenIsValid) navigate('/home');
+      } else {
+        throw new Error('Token inválido');
+      }
+    } catch (error) {
+      console.error('O Login falhou', error);
+      alert('Senha ou email inválido');
+    }
+  };
+
   return (
     <FormsContainer>
       <Typography
@@ -27,6 +50,8 @@ const LoginForms: React.FC = () => {
       <TextField
         label="Email"
         variant="outlined"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
         margin="normal"
         sx={{
           backgroundColor: '#FFF',
@@ -43,6 +68,8 @@ const LoginForms: React.FC = () => {
         label="Senha"
         type="password"
         variant="outlined"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
         margin="normal"
         sx={{
           backgroundColor: '#FFF',
@@ -58,6 +85,7 @@ const LoginForms: React.FC = () => {
       <Button
         variant="contained"
         fullWidth
+        onClick={handleLogin}
         sx={{
           marginTop: '1rem',
           backgroundColor: '#03242f',
