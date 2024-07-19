@@ -1,7 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { userRouter } from './routes/UserRoutes';
 import cors from 'cors';
+import { userRouter } from './routes/UserRoutes';
+import { productRouter } from './routes/ProductRoutes';
 
 class App {
   public app: express.Express;
@@ -12,6 +13,7 @@ class App {
     this.app.use(bodyParser.json());
 
     this.app.use(userRouter);
+    this.app.use(productRouter);
 
     this.routes();
   }
