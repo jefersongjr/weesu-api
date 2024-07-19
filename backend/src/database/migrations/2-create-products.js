@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (QueryInterface, DataTypes) => {
-    await QueryInterface.createTable('Products', {
+    await QueryInterface.createTable('products', {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -44,7 +44,7 @@ module.exports = {
       user_id: {
         type: DataTypes.INTEGER,
         references: {
-          model: 'Users',
+          model: 'users',
           key: 'id',
         },
         onUpdate: 'CASCADE',
@@ -62,6 +62,6 @@ module.exports = {
   },
 
   async down(QueryInterface) {
-    await QueryInterface.dropTable('Products');
+    await QueryInterface.dropTable('products');
   },
 };
