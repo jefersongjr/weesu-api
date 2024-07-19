@@ -17,6 +17,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@types/cors": "^2.8.17",
     "@types/node": "^20.14.11",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
