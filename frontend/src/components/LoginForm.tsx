@@ -30,11 +30,11 @@ const LoginForms: React.FC = () => {
         const tokenIsValid = await validateToken(response.data.token);
         if (tokenIsValid) navigate('/home');
       } else {
-        throw new Error('Token not received');
+        throw new Error('Token inválido');
       }
     } catch (error) {
-      console.error('Login failed', error);
-      alert('Invalid email or password');
+      console.error('O Login falhou', error);
+      alert('Senha ou email inválido');
     }
   };
 

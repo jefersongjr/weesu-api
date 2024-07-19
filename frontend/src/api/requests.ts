@@ -38,7 +38,7 @@ export const validateToken = async (token: string): Promise<boolean> => {
       return false;
     }
   } catch (error) {
-    console.error('Token validation failed');
+    console.error('Token falhou na validação:', error);
     return false;
   }
 };
