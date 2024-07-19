@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, TextField, Button, Typography, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { requestLogin } from '../api/requests';
+import { requestLogin, setToken, validateToken } from '../api/requests';
 
 const FormsContainer = styled(Box)({
   height: '45%',
@@ -24,12 +24,11 @@ const LoginForms: React.FC = () => {
   const handleLogin = async () => {
     try {
       const response = await requestLogin('/login', { email, password });
-
-      console.log('response', response);
-
+      setToken(response?.data?.token);
       if (response && response.data && response.data.token) {
         localStorage.setItem('token', response.data.token);
-        navigate('/home');
+        const tokenIsValid = await validateToken(response.data.token);
+        if (tokenIsValid) navigate('/home');
       } else {
         throw new Error('Token not received');
       }
