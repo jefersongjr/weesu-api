@@ -39,8 +39,8 @@ export class UserService {
     if (!isPasswordValid)
       throw new ThrowException(401, 'Senha ou email incorretos');
 
-    const { name } = user;
-    const token = tokenGenerate.makeToken(name, email);
+    const { name, id } = user;
+    const token = tokenGenerate.makeToken(id, name, email);
     return token;
   };
 
