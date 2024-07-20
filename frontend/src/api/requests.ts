@@ -6,6 +6,7 @@ const api = axios.create({
 });
 
 const DUZENTOS = 200;
+const DUZENTOSEUM = 201;
 
 export const requestLogin = async (
   urlApi: string,
@@ -44,6 +45,19 @@ export const getProductsByUserId = async (
   } catch (error) {
     console.error('Erro ao capturar produtos:');
     throw error;
+  }
+};
+
+export const createProduct = async (urlApi: string, productObject: Product) => {
+  try {
+    const response = await api.post(urlApi, productObject);
+    if (response.status === DUZENTOSEUM) {
+      return response.data;
+    } else {
+      console.error('Erro ao criar produto: Status inesperado');
+    }
+  } catch (error) {
+    console.error('Erro ao criar produto:');
   }
 };
 
