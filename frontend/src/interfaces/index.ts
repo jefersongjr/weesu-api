@@ -14,3 +14,7 @@ export interface Product {
   image_url: string;
   user_id: number;
 }
+
+export interface ProductCardProps {
+  product: Product;
+}
