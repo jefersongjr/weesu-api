@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+import { getProductsByUserId } from '../api/requests';
 import {
   Box,
   Button,
@@ -10,13 +11,31 @@ import {
   Typography,
   Grid,
 } from '@mui/material';
+import { Product } from '../interfaces';
 
 const Home: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>([]);
   const navigate = useNavigate();
 
-  const handleCreateProduct = () => {
-    navigate('/create-product');
-  };
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token === null) {
+      navigate('/login');
+      return;
+    }
+    const getData = async () => {
+      try {
+        const userId = 1;
+        const products = await getProductsByUserId(userId);
+        console.log(products)
+        setProducts(products);
+      } catch (error) {
+        console.error('Erro ao buscar produtos:', error);
+      }
+    };
+
+    getData();
+  }, []);
 
   const product = {
     id: 1,
@@ -36,7 +55,6 @@ const Home: React.FC = () => {
       }}
     >
       <Header />
-
       <Box
         sx={{
           mt: 4,
@@ -58,7 +76,7 @@ const Home: React.FC = () => {
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                {product.name}
+                {products.name}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 {product.description}
@@ -69,7 +87,7 @@ const Home: React.FC = () => {
         <Button
           variant="contained"
           sx={{ backgroundColor: '#42B7BC' }}
-          onClick={handleCreateProduct}
+          onClick={() => navigate('/create')}
         >
           Criar Novo Produto
         </Button>
