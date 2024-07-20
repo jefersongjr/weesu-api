@@ -30,7 +30,7 @@ const LoginForms: React.FC = () => {
         const { id } = await validateToken();
         console.log(id);
 
-        navigate(`/home/${id}`);
+        navigate(`/home/${id}/product-list`);
       } else {
         throw new Error('Token inválido');
       }
