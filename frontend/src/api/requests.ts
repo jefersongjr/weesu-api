@@ -24,9 +24,9 @@ export const requestLogin = async (
 export const setToken = (token: string): void => {
   api.defaults.headers.common['Authorization'] = `${token}`;
 };
-export const validateToken = async (token: string) => {
+export const validateToken = async () => {
   try {
-    const { data } = await api.get(token);
+    const { data } = await api.get('/login/validate');
     return data;
   } catch (error) {
     console.error('Erro ao fazer requisição:', error);

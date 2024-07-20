@@ -27,7 +27,8 @@ const LoginForms: React.FC = () => {
       setToken(response?.data?.token);
       if (response && response.data && response.data.token) {
         localStorage.setItem('token', response.data.token);
-        const { id } = await validateToken(response?.data?.token);
+        const { id } = await validateToken();
+        console.log(id);
 
         navigate(`/home/${id}`);
       } else {
