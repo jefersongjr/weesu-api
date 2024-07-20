@@ -1,27 +1,11 @@
 import axios, { AxiosResponse } from 'axios';
+import { LoginRequest, Product } from '../interfaces';
 
 const api = axios.create({
   baseURL: 'http://localhost:3001',
 });
 
 const DUZENTOS = 200;
-
-interface LoginRequest {
-  email: string;
-  password: string;
-}
-
-interface Product {
-  name: string;
-  description: string;
-  price: number;
-  quantity: number;
-  model: string;
-  referencia: string;
-  brand: string;
-  image_url: string;
-  user_id: number;
-}
 
 export const requestLogin = async (
   urlApi: string,
@@ -52,7 +36,7 @@ export const getProductsByUserId = async (
   userId: number,
 ): Promise<Product[]> => {
   try {
-    const response: AxiosResponse<Product[]> = await axios.get(
+    const response: AxiosResponse<Product[]> = await api.get(
       `/products/${userId}`,
     );
     if (response.status === DUZENTOS) return response.data;
