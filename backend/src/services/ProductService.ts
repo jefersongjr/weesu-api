@@ -1,4 +1,5 @@
 import Product from '../database/models/ProductModel';
+import ThrowException from '../middlewares/exceptions/ThrowException';
 
 export class ProductService {
   public async getProductsByUserId(userId: number) {
@@ -13,4 +14,17 @@ export class ProductService {
       );
     }
   }
+
+  public createNewProduct = async (product: Product) => {
+    const { name } = product;
+    const products = await Product.findAll();
+    const validate1 = products.some((product) => product.name === name);
+    if (validate1) {
+      throw new ThrowException(409, 'Usuário já existe');
+    }
+
+    const newProduct = await Product.create({ ...product });
+
+    return newProduct;
+  };
 }
