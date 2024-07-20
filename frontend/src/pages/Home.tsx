@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import React, { useEffect } from 'react';
 import { validateToken } from '../api/requests';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +12,7 @@ const Home: React.FC = () => {
       navigate('/login');
       return;
     }
-    const tokenIsValid = validateToken(token);
+    const tokenIsValid = validateToken();
     if (!tokenIsValid) navigate('/login');
   }, []);
 
