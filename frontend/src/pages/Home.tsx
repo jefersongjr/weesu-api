@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { validateToken } from '../api/requests';
 import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
 const Home: React.FC = () => {
   const navigate = useNavigate();
 
@@ -17,7 +18,7 @@ const Home: React.FC = () => {
 
   return (
     <Box sx={{ textAlign: 'center', mt: 4 }}>
-      <Typography variant="h2">Bem Vindo!</Typography>
+      <Header />
     </Box>
   );
 };
