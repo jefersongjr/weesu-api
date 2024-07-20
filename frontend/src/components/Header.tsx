@@ -11,7 +11,7 @@ const HeaderContainer = styled(Box)({
   justifyContent: 'space-around',
   alignItems: 'center',
   padding: '1rem 2rem',
-  backgroundColor: '#fff',
+  backgroundColor: '#03242F',
   boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
   boxSizing: 'border-box',
 });
