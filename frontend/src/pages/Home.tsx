@@ -12,6 +12,7 @@ import {
   Grid,
 } from '@mui/material';
 import { Product } from '../interfaces';
+import ProductCard from '../components/ProductCard';
 
 const Home: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -27,7 +28,7 @@ const Home: React.FC = () => {
       try {
         const userId = 1;
         const products = await getProductsByUserId(userId);
-        console.log(products)
+        console.log(products);
         setProducts(products);
       } catch (error) {
         console.error('Erro ao buscar produtos:', error);
@@ -36,13 +37,6 @@ const Home: React.FC = () => {
 
     getData();
   }, []);
-
-  const product = {
-    id: 1,
-    name: 'Produto Fictício',
-    description: 'Descrição do Produto Fictício',
-    imageUrl: '/images/fictitious-product.jpg',
-  };
 
   return (
     <Box
@@ -67,22 +61,7 @@ const Home: React.FC = () => {
           Lista de Produtos
         </Typography>
         <Grid container justifyContent="center">
-          <Card sx={{ maxWidth: 345, margin: 2 }}>
-            <CardMedia
-              component="img"
-              height="140"
-              image={product.imageUrl}
-              alt={product.name}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {products.name}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {product.description}
-              </Typography>
-            </CardContent>
-          </Card>
+          <ProductCard product={products} />
         </Grid>
         <Button
           variant="contained"
