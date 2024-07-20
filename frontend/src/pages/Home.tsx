@@ -2,15 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import { getProductsByUserId } from '../api/requests';
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Grid,
-} from '@mui/material';
+import { Box, Button, Typography, Grid } from '@mui/material';
 import { Product } from '../interfaces';
 import ProductCard from '../components/ProductCard';
 
