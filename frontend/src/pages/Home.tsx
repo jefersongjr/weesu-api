@@ -1,8 +1,13 @@
-import { Box, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
-import { validateToken } from '../api/requests';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
+import { getProductsByUserId, validateToken } from '../api/requests';
+import { Box, Button, Typography, Grid } from '@mui/material';
+import { Product } from '../interfaces';
+import ProductCard from '../components/ProductCard';
+
 const Home: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -11,13 +16,57 @@ const Home: React.FC = () => {
       navigate('/login');
       return;
     }
-    const tokenIsValid = validateToken(token);
-    if (!tokenIsValid) navigate('/login');
+    const getData = async () => {
+      try {
+        const { id } = await validateToken();
+        const products = await getProductsByUserId(id);
+        console.log(products);
+        setProducts(products);
+      } catch (error) {
+        console.error('Erro ao buscar produtos:', error);
+      }
+    };
+
+    getData();
   }, []);
 
   return (
-    <Box sx={{ textAlign: 'center', mt: 4 }}>
-      <Typography variant="h2">Bem Vindo!</Typography>
+    <Box
+      sx={{
+        textAlign: 'center',
+        mt: 4,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <Header />
+      <Box
+        sx={{
+          mt: 4,
+          mb: 2,
+          backgroundColor: '#42B7BC',
+          width: '80%',
+        }}
+      >
+        <Typography variant="h4" component="div" sx={{ mb: 4 }}>
+          Lista de Produtos
+        </Typography>
+        <Grid container justifyContent="center">
+          {products.map((product) => (
+            <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
+              <ProductCard product={product} />
+            </Grid>
+          ))}
+        </Grid>
+        <Button
+          variant="contained"
+          sx={{ backgroundColor: '#42B7BC' }}
+          onClick={() => navigate('/create')}
+        >
+          Criar Novo Produto
+        </Button>
+      </Box>
     </Box>
   );
 };

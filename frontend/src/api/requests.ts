@@ -1,13 +1,11 @@
 import axios, { AxiosResponse } from 'axios';
+import { LoginRequest, Product } from '../interfaces';
 
 const api = axios.create({
   baseURL: 'http://localhost:3001',
 });
 
-interface LoginRequest {
-  email: string;
-  password: string;
-}
+const DUZENTOS = 200;
 
 export const requestLogin = async (
   urlApi: string,
@@ -22,24 +20,30 @@ export const requestLogin = async (
 };
 
 export const setToken = (token: string): void => {
-  api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  api.defaults.headers.common['Authorization'] = `${token}`;
 };
-export const validateToken = async (token: string): Promise<boolean> => {
+export const validateToken = async () => {
   try {
-    const response = await api.get('/login/validate', {
-      headers: {
-        Authorization: token,
-      },
-    });
-
-    if (response.status === 200) {
-      return true;
-    } else {
-      return false;
-    }
+    const { data } = await api.get('/login/validate');
+    return data;
   } catch (error) {
-    console.error('Token falhou na validação:', error);
-    return false;
+    console.error('Erro ao fazer requisição:', error);
+    throw error;
+  }
+};
+
+export const getProductsByUserId = async (
+  userId: number,
+): Promise<Product[]> => {
+  try {
+    const response: AxiosResponse<Product[]> = await api.get(
+      `/products/${userId}`,
+    );
+    if (response.status === DUZENTOS) return response.data;
+    throw new Error('Erro na resposta da API');
+  } catch (error) {
+    console.error('Erro ao capturar produtos:');
+    throw error;
   }
 };
 
