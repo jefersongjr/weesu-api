@@ -16,6 +16,11 @@ const FormsContainer = styled('form')({
   borderRadius: '8px',
   boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
   margin: '0 auto',
+  '@media (max-width: 600px)': {
+    width: '100%',
+    padding: '1rem',
+    boxSizing: 'border-box',
+  },
 });
 
 const StyledTextField = styled(TextField)({
@@ -86,8 +91,17 @@ const EditProductForm: React.FC = () => {
   };
 
   return (
-    <FormsContainer noValidate onSubmit={handleSubmit}>
-      <Typography variant="h4" component="div" sx={{ mb: 4, color: 'white' }}>
+    <FormsContainer noValidate onSubmit={handleSubmit} sx={{ mt: 4 }}>
+      <Typography
+        variant="h4"
+        component="div"
+        sx={{
+          mb: 4,
+          fontFamily: 'ABeeZee',
+          color: '#42B7BC',
+          fontWeight: 'bold',
+        }}
+      >
         Editar Produto
       </Typography>
       <StyledTextField
@@ -173,7 +187,7 @@ const EditProductForm: React.FC = () => {
         onChange={(e) => setImageUrl(e.target.value)}
         required
       />
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
         <Button
           type="submit"
           variant="contained"
@@ -182,6 +196,7 @@ const EditProductForm: React.FC = () => {
             fontWeight: 'bold',
             fontSize: '17px',
             mt: 2,
+            mr: 2,
           }}
         >
           Editar Produto
@@ -194,7 +209,6 @@ const EditProductForm: React.FC = () => {
             fontWeight: 'bold',
             fontSize: '17px',
             mt: 2,
-            ml: 2,
           }}
         >
           Voltar

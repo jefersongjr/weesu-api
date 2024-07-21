@@ -15,6 +15,11 @@ const FormsContainer = styled('form')({
   borderRadius: '8px',
   boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
   margin: '0 auto',
+  '@media (max-width: 600px)': {
+    width: '100%',
+    padding: '1rem',
+    boxSizing: 'border-box',
+  },
 });
 
 const StyledTextField = styled(TextField)({
