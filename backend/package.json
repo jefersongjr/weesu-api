@@ -9,7 +9,7 @@
     "db:init": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
     "lint": "eslint 'src/**/*.{js,ts}'",
-    "vercel-build": "npm run db:init",
+    "vercel-build": "npm install && npm run build",
     "format": "prettier --write 'src/**/*.{js,ts,json}'",
     "sequelize": "ts-node -r dotenv/config ./node_modules/.bin/sequelize"
   },
