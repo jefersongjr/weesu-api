@@ -27,4 +27,31 @@ export class ProductService {
 
     return newProduct;
   };
+
+  public deleteProductById = async (id: number) => {
+    try {
+      const result = await Product.destroy({
+        where: { id },
+      });
+      return result;
+    } catch (error) {
+      throw new Error(`Não foi possível apagar o produto`);
+    }
+  };
+
+  public async updateProductById(id: number, product: Product) {
+    try {
+      const [updated] = await Product.update(product, {
+        where: { id },
+      });
+
+      if (updated === 0) {
+        return null;
+      }
+
+      return Product.findByPk(id);
+    } catch (error) {
+      throw new Error(`Não foi possível atualizar o produto com ID ${id}`);
+    }
+  }
 }
