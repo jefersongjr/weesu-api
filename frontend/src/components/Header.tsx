@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 const HeaderContainer = styled(Box)({
   width: '100%',
   display: 'flex',
-  flexDirection: 'row',
   justifyContent: 'space-around',
   alignItems: 'center',
   padding: '1rem 2rem',
@@ -24,6 +23,19 @@ const Logo = styled(Box)({
 const UserInfo = styled(Box)({
   display: 'flex',
   alignItems: 'center',
+  marginLeft: '1rem',
+  '@media (max-width: 600px)': {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    justifyContent: 'space-between',
+  },
+});
+
+const WelcomeText = styled(Typography)({
+  '@media (max-width: 600px)': {
+    display: 'none',
+  },
 });
 
 const Header: React.FC = () => {
@@ -45,12 +57,12 @@ const Header: React.FC = () => {
           src="/path/to/avatar.jpg"
           sx={{ width: 56, height: 56, marginRight: '1rem' }}
         />
-        <Typography
+        <WelcomeText
           variant="h6"
           sx={{ fontFamily: 'sans-serif', color: '#FFF', marginRight: '1rem' }}
         >
-          Bem vindo, Jim
-        </Typography>
+          Bem-vindo, Jim
+        </WelcomeText>
         <Button
           variant="contained"
           onClick={() => navigate('/')}
