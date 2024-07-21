@@ -1,10 +1,19 @@
 import React from 'react';
-import { Card, CardContent, CardMedia, Typography, Box } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Box,
+  IconButton,
+} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import { ProductCardProps } from '../interfaces';
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
-    <Card sx={{ maxWidth: 345, margin: 2, height: '480px' }}>
+    <Card sx={{ margin: 2, height: '480px' }}>
       <CardMedia
         component="img"
         height="220"
@@ -37,6 +46,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </Typography>
         </Box>
       </CardContent>
+      <Box sx={{ display: 'flex', justifyContent: 'center', p: 1 }}>
+        <IconButton aria-label="edit" sx={{ color: '#4caf50' }}>
+          <EditIcon />
+        </IconButton>
+        <IconButton aria-label="delete" sx={{ color: '#f44336', ml: 2 }}>
+          <DeleteIcon />
+        </IconButton>
+      </Box>
     </Card>
   );
 };
