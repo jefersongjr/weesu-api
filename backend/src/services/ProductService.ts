@@ -27,4 +27,15 @@ export class ProductService {
 
     return newProduct;
   };
+
+  public deleteProductById = async (id: number) => {
+    try {
+      const result = await Product.destroy({
+        where: { id },
+      });
+      return result;
+    } catch (error) {
+      throw new Error(`Não foi possível apagar o produto`);
+    }
+  };
 }
