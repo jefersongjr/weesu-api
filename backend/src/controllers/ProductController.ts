@@ -49,4 +49,28 @@ export class ProductController {
       next(error);
     }
   };
+
+  public deleteProduct = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) => {
+    try {
+      const productId = parseInt(req.params.id, 10);
+
+      if (isNaN(productId)) {
+        return res.status(400).json({ message: 'ID inválido' });
+      }
+
+      const result = await this.productService.deleteProductById(productId);
+
+      if (result === 0) {
+        return res.status(404).json({ message: 'Produto não encontrado' });
+      }
+
+      return res.status(200).json({ message: 'Produto deletado com sucesso' });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
