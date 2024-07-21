@@ -14,19 +14,15 @@ class App {
 
     this.app.use(
       cors({
-        allowedHeaders: ['sessionId', 'Content-Type'],
-        exposedHeaders: ['sessionId'],
-        origin: '*',
-        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-        preflightContinue: false,
+        origin: ['http://localhost:5173', 'https://weesu-api-xupz.vercel.app'],
+        methods: 'GET,POST,PUT,DELETE',
+        allowedHeaders: 'Content-Type,Authorization',
       }),
     );
 
-    // Adicione os routers após o middleware CORS
     this.app.use(userRouter);
     this.app.use(productRouter);
 
-    // Rota para lidar com endpoints não encontrados
     this.app.use((req, res) => {
       res.status(404).send('Page Not Found');
     });
