@@ -6,11 +6,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "start": "node dist/index.js",
+    "db:init": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
     "lint": "eslint 'src/**/*.{js,ts}'",
+    "vercel-build": "npm run db:init",
     "format": "prettier --write 'src/**/*.{js,ts,json}'",
-    "sequelize": "ts-node -r dotenv/config ./node_modules/.bin/sequelize",
-    "db:init": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
+    "sequelize": "ts-node -r dotenv/config ./node_modules/.bin/sequelize"
   },
   "keywords": [],
   "author": "",
