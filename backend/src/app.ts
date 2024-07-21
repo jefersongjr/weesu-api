@@ -15,6 +15,10 @@ class App {
     this.app.use(userRouter);
     this.app.use(productRouter);
 
+    this.app.use((req, res) => {
+      res.status(404).send('Page Not Found');
+    });
+
     this.routes();
   }
 
