@@ -1,21 +1,26 @@
-import dotenv from 'dotenv';
-dotenv.config();
-import config from '../config/config';
-
-import { Sequelize } from 'sequelize';
+import 'dotenv/config';
+import { Sequelize, Options } from 'sequelize';
 import pg from 'pg';
 
-const DATABASE_URL = process.env.DATABASE_URL;
+const useDatabaseUrl = !!process.env.DATABASE_URL;
 
-if (!DATABASE_URL) {
-  throw new Error('DATABASE_URL is not defined in environment variables.');
-}
-
-const sequelize = new Sequelize(DATABASE_URL, {
+const localConfig: Options = {
+  username: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  database: process.env.PGDATABASE,
+  host: process.env.PGHOST,
+  port: Number(process.env.PGPORT),
   dialect: 'postgres',
-  dialectModule: pg,
-  ...config,
-});
+  logging: false,
+};
+
+const sequelize = useDatabaseUrl
+  ? new Sequelize(process.env.DATABASE_URL!, {
+      dialect: 'postgres',
+      dialectModule: pg,
+      logging: false,
+    })
+  : new Sequelize(localConfig);
 
 sequelize
   .authenticate()
