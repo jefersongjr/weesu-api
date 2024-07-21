@@ -1,10 +1,51 @@
 import React from 'react';
-import { Box, Button, TextField, Typography } from '@mui/material';
-import { createProduct } from '../api/requests'; // Função para enviar dados do produto
+import { Button, TextField, Typography } from '@mui/material';
+import { createProduct } from '../api/requests';
+import { styled } from '@mui/system';
+
+const FormsContainer = styled('form')({
+  width: '70%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: '2rem',
+  backgroundColor: '#42B7BC',
+  borderRadius: '8px',
+  boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+  margin: '0 auto',
+});
+
+const StyledTextField = styled(TextField)({
+  marginTop: '1rem',
+  padding: '0',
+  width: '100%',
+  fontWeight: 'bold',
+  fontSize: '20px',
+  backgroundColor: 'white',
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#08415D',
+    },
+    '&:hover fieldset': {
+      borderColor: '#08415D',
+    },
+  },
+  '& .MuiInputBase-input': {
+    color: 'black',
+  },
+  '& label': {
+    color: '#08415D',
+  },
+  '& .Mui-focused': {
+    color: '#08415D',
+  },
+});
 
 const CreateProductForm: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     try {
+      const id = localStorage.getItem('id');
       const formData = new FormData(event.currentTarget);
       const newProduct = {
         name: formData.get('name') as string,
@@ -15,7 +56,7 @@ const CreateProductForm: React.FC = () => {
         referencia: formData.get('referencia') as string,
         brand: formData.get('brand') as string,
         image_url: formData.get('image_url') as string,
-        user_id: 1,
+        user_id: parseInt(id as string),
       };
       await createProduct('products', newProduct);
     } catch (error) {
@@ -24,22 +65,11 @@ const CreateProductForm: React.FC = () => {
   };
 
   return (
-    <Box
-      component="form"
-      noValidate
-      onSubmit={handleSubmit}
-      sx={{
-        textAlign: 'center',
-        mt: 4,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
-      <Typography variant="h4" component="div" sx={{ mb: 4 }}>
+    <FormsContainer noValidate onSubmit={handleSubmit}>
+      <Typography variant="h4" component="div" sx={{ mb: 4, color: 'white' }}>
         Criar Novo Produto
       </Typography>
-      <TextField
+      <StyledTextField
         name="name"
         label="Nome"
         variant="outlined"
@@ -48,7 +78,7 @@ const CreateProductForm: React.FC = () => {
         autoFocus
         required
       />
-      <TextField
+      <StyledTextField
         name="description"
         label="Descrição"
         variant="outlined"
@@ -57,7 +87,7 @@ const CreateProductForm: React.FC = () => {
         autoFocus
         required
       />
-      <TextField
+      <StyledTextField
         name="price"
         label="Preço"
         type="number"
@@ -67,7 +97,7 @@ const CreateProductForm: React.FC = () => {
         autoFocus
         required
       />
-      <TextField
+      <StyledTextField
         name="quantity"
         label="Quantidade"
         type="number"
@@ -77,7 +107,7 @@ const CreateProductForm: React.FC = () => {
         autoFocus
         required
       />
-      <TextField
+      <StyledTextField
         name="model"
         label="Modelo"
         variant="outlined"
@@ -86,7 +116,7 @@ const CreateProductForm: React.FC = () => {
         autoFocus
         required
       />
-      <TextField
+      <StyledTextField
         name="referencia"
         label="Referência"
         variant="outlined"
@@ -95,7 +125,7 @@ const CreateProductForm: React.FC = () => {
         autoFocus
         required
       />
-      <TextField
+      <StyledTextField
         name="brand"
         label="Marca"
         variant="outlined"
@@ -104,7 +134,7 @@ const CreateProductForm: React.FC = () => {
         autoFocus
         required
       />
-      <TextField
+      <StyledTextField
         name="image_url"
         label="URL da Imagem"
         variant="outlined"
@@ -116,11 +146,11 @@ const CreateProductForm: React.FC = () => {
       <Button
         type="submit"
         variant="contained"
-        sx={{ backgroundColor: '#42B7BC', mt: 2 }}
+        sx={{ backgroundColor: '#08415D', mt: 2 }}
       >
         Criar Produto
       </Button>
-    </Box>
+    </FormsContainer>
   );
 };
 
