@@ -12,7 +12,7 @@ import { deleteProduct } from '../api/requests';
 interface ConfirmationModalProps {
   open: boolean;
   handleClose: () => void;
-  id: number;
+  id: number | undefined;
   onSuccess: () => void;
 }
 
@@ -24,7 +24,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
 }) => {
   const handleDelete = async () => {
     try {
-      await deleteProduct('/products', id);
+      await deleteProduct('/products', id as number);
       onSuccess();
       handleClose();
     } catch (error) {
