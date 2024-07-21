@@ -74,4 +74,13 @@ export const deleteProduct = async (apiUrl: string, id: number) => {
   }
 };
 
+export const editProduct = async (id: number, productObject: Product) => {
+  try {
+    const response = await api.put(`/products/${id}`, productObject);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao editar produto:', error);
+  }
+};
+
 export default api;
