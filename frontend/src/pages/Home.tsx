@@ -10,7 +10,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token === null) {
-      navigate('/login');
+      navigate('/');
       return;
     }
   }, []);
@@ -19,7 +19,8 @@ const Home: React.FC = () => {
     <Box
       sx={{
         textAlign: 'center',
-        mt: 4,
+        height: '100vh',
+        backgroundColor: '#F5F5F5 ',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

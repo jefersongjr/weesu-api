@@ -54,9 +54,8 @@ export class UserController {
     try {
       const token = req.headers.authorization;
       const validateToken = await this.userService.getLoginValidate(token);
-      // const { email } = validateToken as JwtPayload;
-      const { id } = validateToken.payload as JwtPayload;
-      return res.status(200).json({ id: id });
+      const { id, name } = validateToken.payload as JwtPayload;
+      return res.status(200).json({ id: id, name: name });
     } catch (error) {
       next(error);
     }

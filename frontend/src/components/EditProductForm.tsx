@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Button, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { editProduct } from '../api/requests';
-import { Product } from '../interfaces/index'; // Importe a interface Product
+import { Product } from '../interfaces/index';
 
 const FormsContainer = styled('form')({
   width: '70%',
@@ -12,10 +12,15 @@ const FormsContainer = styled('form')({
   justifyContent: 'center',
   alignItems: 'center',
   padding: '2rem',
-  backgroundColor: '#42B7BC',
+  backgroundColor: '#FFF',
   borderRadius: '8px',
   boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
   margin: '0 auto',
+  '@media (max-width: 600px)': {
+    width: '100%',
+    padding: '1rem',
+    boxSizing: 'border-box',
+  },
 });
 
 const StyledTextField = styled(TextField)({
@@ -49,7 +54,6 @@ const EditProductForm: React.FC = () => {
   const location = useLocation();
   const { product } = location.state as { product: Product };
 
-  // Initialize state variables with the product properties
   const [name, setName] = useState(product?.name || '');
   const [description, setDescription] = useState(product?.description || '');
   const [price, setPrice] = useState(product?.price || 0);
@@ -87,8 +91,17 @@ const EditProductForm: React.FC = () => {
   };
 
   return (
-    <FormsContainer noValidate onSubmit={handleSubmit}>
-      <Typography variant="h4" component="div" sx={{ mb: 4, color: 'white' }}>
+    <FormsContainer noValidate onSubmit={handleSubmit} sx={{ mt: 4 }}>
+      <Typography
+        variant="h4"
+        component="div"
+        sx={{
+          mb: 4,
+          fontFamily: 'ABeeZee',
+          color: '#42B7BC',
+          fontWeight: 'bold',
+        }}
+      >
         Editar Produto
       </Typography>
       <StyledTextField
@@ -174,13 +187,33 @@ const EditProductForm: React.FC = () => {
         onChange={(e) => setImageUrl(e.target.value)}
         required
       />
-      <Button
-        type="submit"
-        variant="contained"
-        sx={{ backgroundColor: '#08415D', mt: 2 }}
-      >
-        Editar Produto
-      </Button>
+      <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{
+            backgroundColor: '#42B7BC',
+            fontWeight: 'bold',
+            fontSize: '17px',
+            mt: 2,
+            mr: 2,
+          }}
+        >
+          Editar Produto
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => navigate('../product-list')}
+          sx={{
+            backgroundColor: '#42B7BC',
+            fontWeight: 'bold',
+            fontSize: '17px',
+            mt: 2,
+          }}
+        >
+          Voltar
+        </Button>
+      </Box>
     </FormsContainer>
   );
 };

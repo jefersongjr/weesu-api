@@ -31,6 +31,10 @@ User.init(
       allowNull: false,
       unique: true,
     },
+    img_profile: {
+      type: STRING,
+      allowNull: true,
+    },
     password: {
       type: STRING,
       allowNull: false,

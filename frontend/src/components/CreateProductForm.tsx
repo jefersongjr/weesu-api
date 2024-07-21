@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import { createProduct } from '../api/requests';
 import { styled } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
@@ -11,10 +11,15 @@ const FormsContainer = styled('form')({
   justifyContent: 'center',
   alignItems: 'center',
   padding: '2rem',
-  backgroundColor: '#42B7BC',
+  backgroundColor: '#FFF',
   borderRadius: '8px',
   boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
   margin: '0 auto',
+  '@media (max-width: 600px)': {
+    width: '100%',
+    padding: '1rem',
+    boxSizing: 'border-box',
+  },
 });
 
 const StyledTextField = styled(TextField)({
@@ -68,8 +73,17 @@ const CreateProductForm: React.FC = () => {
   };
 
   return (
-    <FormsContainer noValidate onSubmit={handleSubmit}>
-      <Typography variant="h4" component="div" sx={{ mb: 4, color: 'white' }}>
+    <FormsContainer noValidate onSubmit={handleSubmit} sx={{ mt: 4 }}>
+      <Typography
+        variant="h4"
+        component="div"
+        sx={{
+          mb: 4,
+          fontFamily: 'ABeeZee',
+          color: '#42B7BC',
+          fontWeight: 'bold',
+        }}
+      >
         Criar Novo Produto
       </Typography>
       <StyledTextField
@@ -146,13 +160,33 @@ const CreateProductForm: React.FC = () => {
         autoFocus
         required
       />
-      <Button
-        type="submit"
-        variant="contained"
-        sx={{ backgroundColor: '#08415D', mt: 2 }}
-      >
-        Criar Produto
-      </Button>
+      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{
+            backgroundColor: '#42B7BC',
+            fontWeight: 'bold',
+            fontSize: '17px',
+            mt: 2,
+          }}
+        >
+          Criar Produto
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => navigate('../product-list')}
+          sx={{
+            backgroundColor: '#42B7BC',
+            fontWeight: 'bold',
+            fontSize: '17px',
+            mt: 2,
+            ml: 2,
+          }}
+        >
+          Voltar
+        </Button>
+      </Box>
     </FormsContainer>
   );
 };
