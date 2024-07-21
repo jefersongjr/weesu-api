@@ -28,7 +28,7 @@ const LoginForms: React.FC = () => {
       if (response && response.data && response.data.token) {
         localStorage.setItem('token', response.data.token);
         const { id } = await validateToken();
-        console.log(id);
+        localStorage.setItem('id', id);
 
         navigate(`/home/${id}/product-list`);
       } else {

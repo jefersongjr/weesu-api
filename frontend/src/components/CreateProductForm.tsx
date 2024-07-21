@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, TextField, Typography } from '@mui/material';
 import { createProduct } from '../api/requests';
 import { styled } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
 
 const FormsContainer = styled('form')({
   width: '70%',
@@ -43,6 +44,7 @@ const StyledTextField = styled(TextField)({
 });
 
 const CreateProductForm: React.FC = () => {
+  const navigate = useNavigate();
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     try {
       const id = localStorage.getItem('id');
@@ -59,6 +61,7 @@ const CreateProductForm: React.FC = () => {
         user_id: parseInt(id as string),
       };
       await createProduct('products', newProduct);
+      navigate('../product-list');
     } catch (error) {
       alert('Não foi possível criar o produto');
     }
