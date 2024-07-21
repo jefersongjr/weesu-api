@@ -14,9 +14,11 @@ class App {
 
     this.app.use(
       cors({
-        origin: ['http://localhost:5173', 'https://weesu-api-xupz.vercel.app'],
-        methods: 'GET,POST,PUT,DELETE',
-        allowedHeaders: 'Content-Type,Authorization',
+        allowedHeaders: ['sessionId', 'Content-Type'],
+        exposedHeaders: ['sessionId'],
+        origin: '*',
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        preflightContinue: false,
       }),
     );
 
