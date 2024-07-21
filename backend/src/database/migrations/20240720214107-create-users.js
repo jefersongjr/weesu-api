@@ -20,6 +20,10 @@ module.exports = {
         type: DataTypes.STRING,
         unique: true,
       },
+      img_profile: {
+        allowNull: true,
+        type: DataTypes.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
