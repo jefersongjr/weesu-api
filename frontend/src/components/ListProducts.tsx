@@ -84,7 +84,16 @@ const ListProducts: React.FC = () => {
 
   return (
     <>
-      <Typography variant="h4" component="div" sx={{ mb: 4 }}>
+      <Typography
+        variant="h4"
+        component="div"
+        sx={{
+          mb: 4,
+          fontFamily: 'ABeeZee',
+          color: '#42B7BC',
+          fontWeight: 'bold',
+        }}
+      >
         Lista de Produtos
       </Typography>
 
