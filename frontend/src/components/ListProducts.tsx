@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Typography } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import ProductCard from './ProductCard';
 import { getProductsByUserId, validateToken } from '../api/requests';
 import { Product } from '../interfaces';
+import { useNavigate } from 'react-router-dom';
 
 const ListProducts: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getData = async () => {
@@ -33,6 +35,13 @@ const ListProducts: React.FC = () => {
           </Grid>
         ))}
       </Grid>
+      <Button
+        variant="contained"
+        sx={{ backgroundColor: '#42B7BC' }}
+        onClick={() => navigate('../create-product')}
+      >
+        Criar Novo Produto
+      </Button>
     </>
   );
 };
