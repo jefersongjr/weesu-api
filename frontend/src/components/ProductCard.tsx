@@ -11,9 +11,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { ProductCardProps } from '../interfaces';
 import ConfirmationModal from './Modal';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [openDialog, setOpenDialog] = useState(false);
+  const navigate = useNavigate();
 
   const handleClickOpen = () => {
     setOpenDialog(true);
@@ -64,7 +66,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </CardContent>
         <Box sx={{ display: 'flex', justifyContent: 'center', p: 1 }}>
           <IconButton aria-label="edit" sx={{ color: '#4caf50' }}>
-            <EditIcon />
+            <EditIcon
+              onClick={() =>
+                navigate('../edit-product', { state: { product } })
+              }
+            />
           </IconButton>
           <IconButton
             aria-label="delete"
