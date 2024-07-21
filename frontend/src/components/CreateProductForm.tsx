@@ -11,7 +11,7 @@ const FormsContainer = styled('form')({
   justifyContent: 'center',
   alignItems: 'center',
   padding: '2rem',
-  backgroundColor: '#03242F',
+  backgroundColor: '#FFF',
   borderRadius: '8px',
   boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
   margin: '0 auto',
@@ -68,8 +68,17 @@ const CreateProductForm: React.FC = () => {
   };
 
   return (
-    <FormsContainer noValidate onSubmit={handleSubmit}>
-      <Typography variant="h4" component="div" sx={{ mb: 4, color: 'white' }}>
+    <FormsContainer noValidate onSubmit={handleSubmit} sx={{ mt: 4 }}>
+      <Typography
+        variant="h4"
+        component="div"
+        sx={{
+          mb: 4,
+          fontFamily: 'ABeeZee',
+          color: '#42B7BC',
+          fontWeight: 'bold',
+        }}
+      >
         Criar Novo Produto
       </Typography>
       <StyledTextField
@@ -149,7 +158,12 @@ const CreateProductForm: React.FC = () => {
       <Button
         type="submit"
         variant="contained"
-        sx={{ backgroundColor: '#08415D', mt: 2 }}
+        sx={{
+          backgroundColor: '#42B7BC',
+          fontWeight: 'bold',
+          fontSize: '17px',
+          mt: 2,
+        }}
       >
         Criar Produto
       </Button>

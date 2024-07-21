@@ -20,7 +20,6 @@ const Home: React.FC = () => {
       sx={{
         textAlign: 'center',
         height: '100vh',
-        mt: 4,
         backgroundColor: '#F5F5F5 ',
         display: 'flex',
         flexDirection: 'column',
