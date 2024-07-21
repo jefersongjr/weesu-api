@@ -12,9 +12,19 @@ class App {
     this.config();
     this.app.use(bodyParser.json());
 
+    this.app.use(
+      cors({
+        origin: ['http://localhost:5173', 'https://weesu-api-xupz.vercel.app'],
+        methods: 'GET,POST,PUT,DELETE',
+        allowedHeaders: 'Content-Type,Authorization',
+      }),
+    );
+
+    // Adicione os routers após o middleware CORS
     this.app.use(userRouter);
     this.app.use(productRouter);
 
+    // Rota para lidar com endpoints não encontrados
     this.app.use((req, res) => {
       res.status(404).send('Page Not Found');
     });
@@ -23,14 +33,6 @@ class App {
   }
 
   private config(): void {
-    this.app.use(
-      cors({
-        origin: ['http://localhost:5173', 'https://weesu-api-xupz.vercel.app'],
-        methods: 'GET,POST,PUT,DELETE',
-        allowedHeaders: '*',
-      }),
-    );
-
     this.app.use(express.json());
   }
 
