@@ -44,6 +44,10 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     const name = localStorage.getItem('userName');
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/');
+    }
     setUserName(name as string);
   }, []);
 

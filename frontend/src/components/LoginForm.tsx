@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, TextField, Button, Typography, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { requestLogin, setToken, validateToken } from '../api/requests';
@@ -20,6 +20,13 @@ const LoginForms: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Limpar o localStorage ao carregar a página de login
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    localStorage.removeItem('userName');
+  }, []);
 
   const handleLogin = async () => {
     try {
