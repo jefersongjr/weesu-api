@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { editProduct } from '../api/requests';
@@ -173,18 +173,33 @@ const EditProductForm: React.FC = () => {
         onChange={(e) => setImageUrl(e.target.value)}
         required
       />
-      <Button
-        type="submit"
-        variant="contained"
-        sx={{
-          backgroundColor: '#42B7BC',
-          fontWeight: 'bold',
-          fontSize: '17px',
-          mt: 2,
-        }}
-      >
-        Editar Produto
-      </Button>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{
+            backgroundColor: '#42B7BC',
+            fontWeight: 'bold',
+            fontSize: '17px',
+            mt: 2,
+          }}
+        >
+          Editar Produto
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => navigate('../product-list')}
+          sx={{
+            backgroundColor: '#42B7BC',
+            fontWeight: 'bold',
+            fontSize: '17px',
+            mt: 2,
+            ml: 2,
+          }}
+        >
+          Voltar
+        </Button>
+      </Box>
     </FormsContainer>
   );
 };

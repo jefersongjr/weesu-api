@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import { createProduct } from '../api/requests';
 import { styled } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
@@ -155,18 +155,33 @@ const CreateProductForm: React.FC = () => {
         autoFocus
         required
       />
-      <Button
-        type="submit"
-        variant="contained"
-        sx={{
-          backgroundColor: '#42B7BC',
-          fontWeight: 'bold',
-          fontSize: '17px',
-          mt: 2,
-        }}
-      >
-        Criar Produto
-      </Button>
+      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{
+            backgroundColor: '#42B7BC',
+            fontWeight: 'bold',
+            fontSize: '17px',
+            mt: 2,
+          }}
+        >
+          Criar Produto
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => navigate('../product-list')}
+          sx={{
+            backgroundColor: '#42B7BC',
+            fontWeight: 'bold',
+            fontSize: '17px',
+            mt: 2,
+            ml: 2,
+          }}
+        >
+          Voltar
+        </Button>
+      </Box>
     </FormsContainer>
   );
 };
