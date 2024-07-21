@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography, Button, Avatar } from '@mui/material';
 import logo from '../assets/weesuLogo.png';
 import styled from '@emotion/styled';
@@ -40,6 +40,13 @@ const WelcomeText = styled(Typography)({
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
+  const [userName, setUserName] = useState<string>('');
+
+  useEffect(() => {
+    const name = localStorage.getItem('userName');
+    setUserName(name as string);
+  }, []);
+
   return (
     <HeaderContainer>
       <Logo>
@@ -61,7 +68,7 @@ const Header: React.FC = () => {
           variant="h6"
           sx={{ fontFamily: 'sans-serif', color: '#FFF', marginRight: '1rem' }}
         >
-          Bem-vindo, Jim
+          {`Bem-vindo, ${userName}!`}
         </WelcomeText>
         <Button
           variant="contained"
