@@ -31,13 +31,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <>
-      <Card sx={{ margin: 2, height: '480px' }}>
+      <Card
+        sx={{
+          margin: 2,
+          minHeight: 'min-content',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
         <CardMedia
           component="img"
           height="220"
           image={product?.image_url}
           alt={product?.name}
-          sx={{ objectFit: 'contain' }}
+          sx={{ objectFit: 'contain', width: '100%' }}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
