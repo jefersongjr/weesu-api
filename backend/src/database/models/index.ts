@@ -1,7 +1,15 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { Sequelize } from 'sequelize';
-const config = require('../config/config'); // Assumindo que o arquivo config.ts está configurado como você mostrou
+const config = require('../config/config');
 
-const sequelize = new Sequelize(config);
+if (!process.env.DATABASE_URL) {
+  throw new Error('DATABASE_URL is not defined');
+}
+
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres',
+  logging: false,
+  ...config,
+});
 
 export default sequelize;
