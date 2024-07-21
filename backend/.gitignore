@@ -10,7 +10,7 @@ pnpm-debug.log*
 node_modules/
 
 # Compilação de saída
-dist/
+# dist/
 build/
 
 # Diretorias de pacotes
