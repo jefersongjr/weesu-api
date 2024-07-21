@@ -61,4 +61,17 @@ export const createProduct = async (urlApi: string, productObject: Product) => {
   }
 };
 
+export const deleteProduct = async (apiUrl: string, id: number) => {
+  try {
+    const response = await api.delete(`${apiUrl}/${id}`);
+    if (response.status === DUZENTOS) {
+      console.log('Produto deletado com sucesso');
+    } else {
+      console.error('Erro ao deletar produto: Status inesperado');
+    }
+  } catch (error) {
+    console.error('Erro ao deletar produto:', error);
+  }
+};
+
 export default api;
