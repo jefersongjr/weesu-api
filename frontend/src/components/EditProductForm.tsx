@@ -3,7 +3,7 @@ import { Button, TextField, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { editProduct } from '../api/requests';
-import { Product } from '../interfaces/index'; // Importe a interface Product
+import { Product } from '../interfaces/index';
 
 const FormsContainer = styled('form')({
   width: '70%',
@@ -49,7 +49,6 @@ const EditProductForm: React.FC = () => {
   const location = useLocation();
   const { product } = location.state as { product: Product };
 
-  // Initialize state variables with the product properties
   const [name, setName] = useState(product?.name || '');
   const [description, setDescription] = useState(product?.description || '');
   const [price, setPrice] = useState(product?.price || 0);

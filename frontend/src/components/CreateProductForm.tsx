@@ -11,7 +11,7 @@ const FormsContainer = styled('form')({
   justifyContent: 'center',
   alignItems: 'center',
   padding: '2rem',
-  backgroundColor: '#42B7BC',
+  backgroundColor: '#03242F',
   borderRadius: '8px',
   boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
   margin: '0 auto',
