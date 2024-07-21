@@ -10,7 +10,6 @@ class App {
   constructor() {
     this.app = express();
     this.config();
-    this.app.use(bodyParser.json());
 
     this.app.use(userRouter);
     this.app.use(productRouter);
@@ -30,6 +29,8 @@ class App {
         allowedHeaders: 'Content-Type,Authorization',
       }),
     );
+
+    this.app.use(bodyParser.json());
 
     this.app.use(express.json());
   }

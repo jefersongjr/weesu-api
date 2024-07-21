@@ -13,7 +13,6 @@ class App {
     constructor() {
         this.app = (0, express_1.default)();
         this.config();
-        this.app.use(body_parser_1.default.json());
         this.app.use(UserRoutes_1.userRouter);
         this.app.use(ProductRoutes_1.productRouter);
         this.app.use((req, res) => {
@@ -27,6 +26,7 @@ class App {
             methods: 'GET,POST,PUT,DELETE',
             allowedHeaders: 'Content-Type,Authorization',
         }));
+        this.app.use(body_parser_1.default.json());
         this.app.use(express_1.default.json());
     }
     routes() {
