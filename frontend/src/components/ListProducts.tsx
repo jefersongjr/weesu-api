@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Grid, Typography } from '@mui/material';
 import ProductCard from './ProductCard';
-import { getProductsByUserId, validateToken } from '../api/requests';
+import { getProductsByUserId } from '../api/requests';
 import { Product } from '../interfaces';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,8 +12,16 @@ const ListProducts: React.FC = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { id } = await validateToken();
-        const products = await getProductsByUserId(id);
+        const id = localStorage.getItem('id');
+
+        if (!id) {
+          console.error('ID inválido encontrado no localStorage');
+          navigate('/login');
+        }
+
+        const userId = parseFloat((id as string) ?? '0') as number;
+
+        const products = await getProductsByUserId(userId);
         setProducts(products);
       } catch (error) {
         console.error('Erro ao buscar produtos:', error);
