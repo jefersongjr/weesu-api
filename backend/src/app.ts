@@ -3,8 +3,6 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { userRouter } from './routes/UserRoutes';
 import { productRouter } from './routes/ProductRoutes';
-import { Sequelize } from 'sequelize';
-import config from '../src/database/config/config';
 
 class App {
   public app: express.Express;
@@ -40,20 +38,8 @@ class App {
     this.app.get('/', (req, res) => res.json({ ok: true }));
   }
 
-  public async start(PORT: string | number): Promise<void> {
-    try {
-      const sequelize = new Sequelize(config);
-
-      await sequelize.authenticate();
-      console.log('Database connection has been established successfully.');
-
-      this.app.listen(PORT, () =>
-        console.log(`Server running on port ${PORT}`),
-      );
-    } catch (error) {
-      console.error('Unable to connect to the database:', error);
-      process.exit(1);
-    }
+  public start(PORT: string | number): void {
+    this.app.listen(PORT, () => console.log(`Running on port ${PORT}`));
   }
 }
 
