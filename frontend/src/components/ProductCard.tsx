@@ -21,7 +21,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </Typography>
         <Box sx={{ mt: 2 }}>
           <Typography variant="body2" color="text.primary">
-            <strong>Preço de venda:</strong> ${product?.price}
+            <strong>Preço de venda:</strong> R$ {product?.price}
           </Typography>
           <Typography variant="body2" color="text.primary">
             <strong>Quantidade em estoque:</strong> {product?.quantity}
