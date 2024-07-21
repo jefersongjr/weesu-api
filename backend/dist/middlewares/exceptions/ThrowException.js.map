@@ -1,0 +1,1 @@
+{"version":3,"file":"ThrowException.js","sourceRoot":"","sources":["../../../src/middlewares/exceptions/ThrowException.ts"],"names":[],"mappings":";;AAAA,MAAqB,aAAc,SAAQ,KAAK;IAG9C,YAAY,MAAc,EAAE,OAAe;QACzC,KAAK,CAAC,OAAO,CAAC,CAAC;QACf,IAAI,CAAC,MAAM,GAAG,MAAM,CAAC;IACvB,CAAC;CACF;AAPD,gCAOC"}
