@@ -34,7 +34,7 @@ const ListProducts: React.FC = () => {
 
         if (!id) {
           console.error('ID inválido encontrado no localStorage');
-          navigate('/login');
+          navigate('/');
           return;
         }
 
