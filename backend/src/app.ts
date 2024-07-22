@@ -20,11 +20,10 @@ class App {
       }),
     );
 
-    // Configurar CSP
     this.app.use((req, res, next) => {
       res.setHeader(
         'Content-Security-Policy',
-        "default-src 'self'; img-src 'self' https://weesu-api.onrender.com; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
+        "default-src 'self'; img-src 'self' https://weesu-api.onrender.com; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; font-src 'self'; frame-src 'none'; object-src 'none';",
       );
       next();
     });
