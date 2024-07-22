@@ -1,4 +1,15 @@
+import dotenv from 'dotenv';
 import { Sequelize } from 'sequelize';
-import * as config from '../config/config';
+import pg from 'pg';
 
-export default new Sequelize(config);
+dotenv.config();
+
+const { DATABASE_URL } = process.env;
+
+const sequelize = new Sequelize(DATABASE_URL!, {
+  dialect: 'postgres',
+  dialectModule: pg,
+  logging: false,
+});
+
+export default sequelize;
