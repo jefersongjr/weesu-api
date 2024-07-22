@@ -1,30 +1,33 @@
-# React + TypeScript + Vite
+# Front End
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O frontend tem as seguintes funcionalidades:
 
-Currently, two official plugins are available:
+## Tela de Login: 🔐
+![Tela de Login](https://raw.githubusercontent.com/jefersongjr/weesu-api/main/frontend/src/assets/login.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A tela de login tem uma verificação com jwt, que ao verificar redireciona o usuário para a área exclusiva com os seus items únicos e detalhes sobre os mesmos.
 
-## Expanding the ESLint configuration
+## Listagem de produtos: 📖
+![image](https://github.com/user-attachments/assets/5eca0433-e738-40d7-866e-05995b29141a):
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Lista os produtos separados por usuário, tem um campo de pesquisa por marca, nome e referência, botão para editar ou excluir um produto e um botão que leva até a página de criar um produto
 
-- Configure the top-level `parserOptions` property like this:
+## Criar produto 🤖
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+![imagem](https://raw.githubusercontent.com/jefersongjr/weesu-api/main/frontend/src/assets/create.png)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Página com formulário para criar um novo produto
+
+## Editar produto ✏️
+![imagem](https://raw.githubusercontent.com/jefersongjr/weesu-api/main/frontend/src/assets/edit.png)
+
+Página com formulário para apagar um produto já existente.
+
+## Apagar Produto 🧺
+
+![lixeira](https://raw.githubusercontent.com/jefersongjr/weesu-api/main/frontend/src/assets/delete.png)
+
+Pop-Up para confirmar exclusão  de um produto
+
+
+
