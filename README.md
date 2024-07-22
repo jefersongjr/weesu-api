@@ -9,6 +9,13 @@ O Weesu Storage, foi desenvolvido como parte de um desafio técnico para o proce
 
 ## Deploy 💻
 
+As credenciais de acesso são : 
+
+```
+User: jim_happer@ds.com
+password: senha
+```
+
 Veja o projeto em funcionamento [aqui](https://weesu-api-xupz.vercel.app/).
 
 ### 📋 Pré-requisitos:
