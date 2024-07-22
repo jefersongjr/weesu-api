@@ -20,7 +20,7 @@ Inicialmente você precisará ter instalados:
 
 
 <details>
-  <summary> ### 🔧 Configuração Inicial: </summary>
+  <summary> Clique para ver o passo a passo da instalação </summary>
     
   ### 1- Crie um fork e clone o repositório :
 
@@ -65,7 +65,7 @@ npm run build
     docker-compose up --build
 ````
 
-# 7- crie e popule os dbs com comando: 
+### 7- crie e popule os dbs com comando: 
 ```bash
 npm run db:init
 ```
@@ -73,6 +73,9 @@ npm run db:init
 </details>
 
 ## Se tudo deu certo até aqui é só acessar `http://localhost:5173/` o projeto ja estará funcionando 
+
+Para mais detalhes sobre o front-end, veja o [README do front-end](https://github.com/jefersongjr/weesu-api/tree/main/frontend#readme).
+
 
 
 ```
