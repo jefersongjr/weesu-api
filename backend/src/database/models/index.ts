@@ -15,7 +15,10 @@ const sequelize = isProduction
       dialectModule: pg,
       logging: false,
     })
-  : new Sequelize(PGDATABASE!, PGUSER!, PGPASSWORD, {
+  : new Sequelize({
+      database: PGDATABASE!,
+      username: PGUSER!,
+      password: PGPASSWORD,
       host: PGHOST,
       port: Number(PGPORT),
       dialect: 'postgres',
