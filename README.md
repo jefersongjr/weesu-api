@@ -1,4 +1,30 @@
-# weesu-api
+# Weesu Storage 🏬
+
+## 🚀 Começando
+
+O Weesu Storage, foi desenvolvido como parte de um desafio técnico para o processo seletivo da empresa [Weesu](https://weesu.com.br). O desafio consistia em criar um banco de dados e uma API REST que se conectasse a um front-end. O front-end deveria incluir uma página de login com validação e funcionalidades para listar, criar e editar produtos. A aplicação foi construída utilizando React, Node, Postgres e Docker.
+
+Consulte **[Implantação](#-implanta%C3%A7%C3%A3o)** para saber como implantar o projeto.
+
+### 📋 Pré-requisitos:
+
+Inicialmente você precisará ter instalados:
+
+```
+*v20.15.1
+*Docker version 27.0.3
+*Docker Compose version v2.5.0
+```
+### 🔧 Configuração Inicial:
+
+### 1- Crie um fork e clone o repositório :
+
+ex:
+```bash
+git clone https://github.com/jefersongjr/weesu-api.git
+
+```
+
 
 ## Como Usar:
 
