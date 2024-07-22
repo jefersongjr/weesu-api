@@ -14,6 +14,7 @@ Inicialmente você precisará ter instalados:
 *v20.15.1
 *Docker version 27.0.3
 *Docker Compose version v2.5.0
+*Npm 10.7.0
 ```
 ### 🔧 Configuração Inicial:
 
@@ -24,6 +25,47 @@ ex:
 git clone https://github.com/jefersongjr/weesu-api.git
 
 ```
+### 2- navegue até o diretório do `/weesu/frontend` :
+
+ex:
+```
+cd /weesu/frontend
+```
+### 3- mude o nome do arquivo .envExample para .env e instale as dependências
+
+ex
+
+```bash
+mv .envExample .env
+npm install
+```
+
+### 4- navegue até a pasta do `/weesu/backend e renomeie o envExample` :
+
+ex:
+```bash
+cd ../backend
+mv .envExample .env
+```
+### 5- construa a estrutura inicial da aplicação com os comandos: 
+
+```bash
+npm instal
+npm run build
+```
+
+### 6- Monte os containers da aplicação usando o docker compose:  
+
+
+```bash
+    docker-compose up --build
+````
+
+# 7- crie e popule os dbs com comando: 
+```bash
+npm run db:init
+```
+## Se tudo deu certo até aqui é só acessar `http://localhost:5173/` o projeto ja estará funcionando 
 
 
 ## Como Usar:
