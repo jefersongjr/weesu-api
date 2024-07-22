@@ -1,6 +1,0 @@
-PGUSER=root
-PGPASSWORD=password
-PGDATABASE=weesu_db
-PGHOST=db
-PGPORT=5432
-DATABASE_URL=caminhodoteudb
