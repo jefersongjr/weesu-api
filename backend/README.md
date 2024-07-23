@@ -287,7 +287,7 @@ Error: Todos os campos devem ser preenchidos
 Edita o produto que foi dado o Id, recebendo um json coom todos valores preenchidos , alterando o que for necessário:
 ex:
 
-/products/1
+`/products/1`
 
 vou alterar a descrição do produto criado no exemplo anterior
 
