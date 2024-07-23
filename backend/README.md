@@ -63,6 +63,12 @@ deve ser pass nos headers Authorization o token que foi gerado no login e a resp
   "name": "James Happer"
 }
 ```
+
+em caso de token inexistente ou em formato errado a api responderá:
+
+```bash 
+Error: Você deve ter um token válido
+```
 ## rota `get: '/products/:userId'`
 
 essa rota captura todos os produtos registrados pelo id do usuário, ex:
@@ -222,6 +228,8 @@ essa rota captura todos os produtos registrados pelo id do usuário, ex:
 ]
 ```
 
+em caso de ser usado algum usuário inexistente a api retornará um array vazio 
+
 ## rota `Post: '/products`
 
 Essa rota recebe um json com os dados completos do produto e responde com o objeto criado : 
@@ -267,5 +275,83 @@ Em caso de produto já cadastrado a api dará a seguinte resposta:
 Error: Produto já cadastrado
 ```
 
+Se algum campo não for preenchido : 
+
+```bash
+
+Error: Todos os campos devem ser preenchidos
+
+```
+## rota `Put: '/products/:productId`
+
+Edita o produto que foi dado o Id, recebendo um json coom todos valores preenchidos , alterando o que for necessário:
+ex:
+
+/products/1
+
+vou alterar a descrição do produto criado no exemplo anterior
+
+```json
+ {
+  "name": "Under Armour Tribase",
+  "description": " Entrega toda resistência necessária para a atividade.",
+  "price": "289.99",
+  "quantity": 12,
+  "model": "Tribase",
+  "referencia": "UA71890",
+  "brand": "Under Armour",
+  "image_url": "https://m.media-amazon.com/images/I/51QYaQL9k4L._AC_SY575_.jpg",
+ "user_id": 1
+}
+
+```
+
+e api retorna 
+
+```json
+{
+  "id": 1,
+  "name": "Under Armour Tribase",
+  "description": " Tênis bonito e barato.",
+  "price": "289.99",
+  "quantity": 12,
+  "model": "Tribase",
+  "referencia": "UA71890",
+  "brand": "Under Armour",
+  "image_url": "https://m.media-amazon.com/images/I/51QYaQL9k4L._AC_SY575_.jpg",
+  "user_id": 1,
+  "createdAt": "2024-07-22T01:02:41.240Z",
+  "updatedAt": "2024-07-23T03:44:47.290Z"
+}
+```
+Se algum campo não for preenchido : 
+
+```bash
+
+Error: Todos os campos devem ser preenchidos
+```
+em caso de um id não existente ser escolhido a api retornará `null`
+
+## Rota ´Delete: '/products/productId´:
+
+Deleta um produto pelo Id:
+
+ex:
+
+`/product/1` 
+
+a api retornará
+
+```json
+{
+  "message": "Produto deletado com sucesso"
+}
+```
+
+em caso de um id não existente: 
+
+```bash
+Error: Produto não encontrado
+```
 
 
