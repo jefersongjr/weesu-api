@@ -15,12 +15,12 @@ export class tokenGenerate {
     const jwtConfig: jwt.VerifyOptions = {
       complete: true,
     };
-    if (!token) throw new ThrowException(401, 'Você deve ter um toke válido');
+    if (!token) throw new ThrowException(401, 'Você deve ter um token válido');
     try {
       const introspection = jwt.verify(token, 'jwt_secret', jwtConfig);
       return introspection;
     } catch (error) {
-      throw new ThrowException(401, 'Você deve ter um toke válido');
+      throw new ThrowException(401, 'Você deve ter um token válido');
     }
   };
 }

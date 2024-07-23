@@ -20,7 +20,7 @@ export class ProductService {
     const products = await Product.findAll();
     const validate1 = products.some((product) => product.name === name);
     if (validate1) {
-      throw new ThrowException(409, 'Usuário já existe');
+      throw new ThrowException(409, 'Produto já cadastrado');
     }
 
     const newProduct = await Product.create({ ...product });

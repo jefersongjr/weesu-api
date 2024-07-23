@@ -45,7 +45,7 @@ export class UserService {
   };
 
   public getLoginValidate = async (token: string | undefined) => {
-    if (!token) throw new ThrowException(401, 'Token invalid');
+    if (!token) throw new ThrowException(401, 'Token inválido');
     const user = await tokenGenerate.validateToken(token);
     console.log(user);
     return user as Jwt;
