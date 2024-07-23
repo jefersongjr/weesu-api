@@ -16,7 +16,7 @@ User: jim_happer@ds.com
 password: senha
 ```
 
-Veja o projeto em funcionamento [aqui](https://weesu-api-xupz.vercel.app/).
+Veja o projeto em funcionamento [aqui](https://weesu-api-xupz.vercel.app).
 
 ### 📋 Pré-requisitos:
 
