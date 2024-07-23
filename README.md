@@ -86,7 +86,7 @@ npm run db:init
 
 ## Se tudo deu certo até aqui é só acessar `http://localhost:5173/` o projeto ja estará funcionando 
 
-Para mais detalhes sobre o front-end, veja o [README do front-end](https://github.com/jefersongjr/weesu-api/tree/main/frontend#readme).
+Para mais detalhes sobre o front-end, veja o [README do front-end](https://github.com/jefersongjr/weesu-api/tree/main/frontend#readme). <br/>
 Para mais detalhes sobre o back-end, veja o [README do front-end](https://github.com/jefersongjr/weesu-api/tree/main/backend#readme).
 
 
