@@ -105,4 +105,4 @@ Para mais detalhes sobre o back-end, veja o [README do front-end](https://github
 
 ## 📄 Licença
 
-Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](https://github.com/usuario/projeto/licenca) para detalhes.
+Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](https://github.com/jefersongjr/weesu-api/blob/main/LICENSE.md) para detalhes.
