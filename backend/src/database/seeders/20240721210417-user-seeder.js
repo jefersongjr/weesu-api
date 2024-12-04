@@ -12,7 +12,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        name: 'Dwight Schrute',
+        name: 'Dwight  Schrute',
         password:
           '$2a$10$cWIvhraszSc2VRSgRZq3terL7hGvsrR3X16kZkobGP9P0BOvcy/u2',
         // senha: senha2
